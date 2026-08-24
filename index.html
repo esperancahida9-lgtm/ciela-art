@@ -7,405 +7,421 @@
 
     <style>
 
-        @import url('https://db.onlinewebfonts.com/c/07cb29fdcb073fff840edc6de2067b50?family=Amsterdam+Four_ttf');
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Georgia, serif;
-            background: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        header {
-            height: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            border-bottom: 1px solid #ddd6ce;
-            background: rgba(145, 190, 150, 0.35);
-            backdrop-filter: blur(5px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-        }
-
-        .green-divider {
-            height: 15px;
-            background: #051711;
-            position: absolute;
-            top: 65px;
-            left: 0;
-            width: 100%;
-            z-index: 99;
-        }
-
-        .studio-logo {
-            width: 110px;
-            height: auto;
-            display: block;
-            position: absolute;
-            top: 10px;
-            left: 7%;
-            z-index: 101;
-            filter: brightness(0) saturate(100%) invert(91%) sepia(25%) saturate(750%) hue-rotate(5deg) brightness(110%) contrast(90%);
-        }
-
-        .desktop-menu {
-            display: flex;
-            gap: 30px;
-            margin-left: auto;
-        }
-
-        .desktop-menu a {
-            color: #79bb99;
-            text-decoration: none;
-            font-size: 13px;
-            letter-spacing: 2px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .desktop-menu a:hover {
-            color: #ffffff;
-        }
-
-        .menu-container {
-            display: none;
-            position: relative;
-        }
-
-        .menu-button {
-            background: none;
-            border: none;
-            color: #70ad6b;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 50px;
-            background: #111111;
-            min-width: 180px;
-            padding: 15px 0;
-            border: 1px solid #333333;
-            z-index: 200;
-        }
-
-        .dropdown-menu.open {
-            display: block;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            color: #79bb99;
-            text-decoration: none;
-            padding: 14px 25px;
-            font-size: 13px;
-            letter-spacing: 2px;
-        }
-
-        .dropdown-menu a:hover {
-            background: #091e16;
-        }
-
-        .hero {
-            position: relative;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            text-align: center;
-            padding: 95px 0 0 0;
-            overflow: hidden;
-            background: rgba(11, 65, 16, 0.406);
-        }
-
-        .hero-bg {
-            position: relative;
-            display: block;
-            width: 100%;
-            height: auto;
-            z-index: 1;
-            animation: panAnimation1 4.5s ease-out forwards;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
-            max-width: 800px;
-            width: 90%;
-        }
-
-        .hero h1 {
-            font-size: 70px;
-            font-weight: normal;
-            line-height: 1.05;
-            margin-bottom: 25px;
-            color: #9dceff;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: textAppear 1.4s ease-out 2.2s forwards;
-        }
-
-        .hero p {
-            color: #9dceff;
-            font-size: 18px;
-            margin-bottom: 35px;
-            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: textAppear 1.2s ease-out 2.8s forwards;
-        }
-
-        .hero .button {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: textAppear 1.2s ease-out 3.3s forwards;
-        }
-
-        @keyframes panAnimation1 {
-            0% {
-                transform: scale(1.05);
-                transform-origin: top center;
-                opacity: 0.4;
-            }
-
-            100% {
-                transform: scale(1);
-                transform-origin: top center;
-                opacity: 1;
-            }
-        }
-
-        @keyframes textAppear {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .button {
-            display: inline-block;
-            padding: 15px 32px;
-            border: 1px solid #ffffff;
-            text-decoration: none;
-            color: #ffffff;
-            letter-spacing: 2px;
-            font-size: 12px;
-            background: rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
-        }
-
-        .button:hover {
-            background: #ffffff;
-            color: #000000;
-        }
-
-        .studio-footer {
-            width: 100%;
-            height: 180px;
-            background: #051711;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .studio-name {
-            font-family: "Amsterdam Four_ttf", cursive;
-            font-size: 55px;
-            color: #ffffff;
-            letter-spacing: 2px;
-        }
-
-        @media (max-width: 850px) {
-
-            header {
-                justify-content: center;
-            }
-
-            .desktop-menu {
-                display: none;
-            }
-
-            .menu-container {
-                display: block;
-                position: absolute;
-                right: 20px;
-            }
-
-            .hero h1 {
-                font-size: 44px;
-            }
-
-            .hero {
-                padding-top: 90px;
-            }
-
-            .studio-logo {
-                width: 80px;
-                top: 10px;
-                left: 7%;
-            }
-        }
-
-    </style>
-</head>
-
-<body>
-
-<header>
-
-    <img src="images/logo.png"
-         alt="My Art Studio Logo"
-         class="studio-logo">
-
-    <nav class="desktop-menu">
-        <a href="#home">HOME</a>
-        <a href="about.html">ABOUT</a>
-        <a href="paintings.html">PAINTINGS</a>
-        <a href="#contact">CONTACT</a>
-    </nav>
-
-    <div class="menu-container">
-
-        <button class="menu-button" id="menuButton">☰</button>
-
-        <nav class="dropdown-menu" id="dropdownMenu">
-            <a href="#home">HOME</a>
-            <a href="about.html">ABOUT</a>
-            <a href="paintings.html">PAINTINGS</a>
-            <a href="#contact">CONTACT</a>
-        </nav>
-
-    </div>
-
-</header>
-
-<div class="green-divider"></div>
-
-<section class="hero" id="home">
-
-    <img src="images/(1).png"
-         class="hero-bg">
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-        <h1>
-            Art That Speaks<br>
-            Without Words
-        </h1>
-
-        <p>
-            Original paintings created with passion, emotion and imagination.
-        </p>
-
-        <a href="paintings.html" class="button">
-            EXPLORE PAINTINGS
-        </a>
-
-    </div>
-
-</section>
-
-<footer class="studio-footer">
-    <div class="studio-name">Ciela Art</div>
-</footer>
-
-<script>
-
-    const menuButton = document.getElementById('menuButton');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-
-    menuButton.addEventListener('click', function() {
-        dropdownMenu.classList.toggle('open');
-    });
-
-
-    const homeLinks = document.querySelectorAll('a[href="#home"]');
-    const heroBg = document.querySelector('.hero-bg');
-
-    homeLinks.forEach(link => {
-
-        link.addEventListener('click', function() {
-
-            dropdownMenu.classList.remove('open');
-
-            if (heroBg) {
-
-                heroBg.style.animation = 'none';
-
-                void heroBg.offsetWidth;
-
-                heroBg.style.animation =
-                    'panAnimation1 4.5s ease-out forwards';
-            }
-
-            const heading = document.querySelector('.hero h1');
-            const paragraph = document.querySelector('.hero p');
-            const button = document.querySelector('.hero .button');
-
-            if (heading && paragraph && button) {
-
-                heading.style.animation = 'none';
-                paragraph.style.animation = 'none';
-                button.style.animation = 'none';
-
-                void heading.offsetWidth;
-                void paragraph.offsetWidth;
-                void button.offsetWidth;
-
-                heading.style.animation =
-                    'textAppear 1.4s ease-out 2.2s forwards';
-
-                paragraph.style.animation =
-                    'textAppear 1.2s ease-out 2.8s forwards';
-
-                button.style.animation =
-                    'textAppear 1.2s ease-out 3.3s forwards';
-            }
-
-        });
-
-    });
-
-</script>
-
-</body>
+        @import url('https://db.onlinewebfonts.com/c/07cb29fdcb073fff840edc6de2067b50?family=Amsterdam+Four_ttf'); 
+ 
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        } 
+ 
+        body { 
+            font-family: Georgia, serif; 
+            background: #000000; 
+            color: #ffffff; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth; 
+        } 
+ 
+        header { 
+            height: 65px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 7%; 
+            border-bottom: 1px solid #ddd6ce; 
+            background: rgba(145, 190, 150, 0.35); 
+            backdrop-filter: blur(5px); 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            z-index: 100; 
+        } 
+ 
+        .green-divider { 
+            height: 15px; 
+            background: #051711; 
+            position: absolute; 
+            top: 65px; 
+            left: 0; 
+            width: 100%; 
+            z-index: 99; 
+        } 
+ 
+        .studio-logo { 
+            width: 110px; 
+            height: auto; 
+            display: block; 
+            position: absolute; 
+            top: 10px; 
+            left: 7%; 
+            z-index: 101; 
+            filter: brightness(0) saturate(100%) invert(91%) sepia(25%) saturate(750%) hue-rotate(5deg) brightness(110%) contrast(90%); 
+        } 
+ 
+        .desktop-menu { 
+            display: flex; 
+            gap: 30px; 
+            margin-left: auto; 
+        } 
+ 
+        .desktop-menu a { 
+            color: #79bb99; 
+            text-decoration: none; 
+            font-size: 13px; 
+            letter-spacing: 2px; 
+            font-weight: bold; 
+            transition: color 0.3s; 
+        } 
+ 
+        .desktop-menu a:hover { 
+            color: #ffffff; 
+        } 
+ 
+        .menu-container { 
+            display: none; 
+            position: relative; 
+        } 
+ 
+        .menu-button { 
+            background: none; 
+            border: none; 
+            color: #70ad6b; 
+            font-size: 30px; 
+            cursor: pointer; 
+        } 
+ 
+        .dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            right: 0; 
+            top: 50px; 
+            background: #111111; 
+            min-width: 180px; 
+            padding: 15px 0; 
+            border: 1px solid #333333; 
+            z-index: 200; 
+        } 
+ 
+        .dropdown-menu.open { 
+            display: block; 
+        } 
+ 
+        .dropdown-menu a { 
+            display: block; 
+            color: #79bb99; 
+            text-decoration: none; 
+            padding: 14px 25px; 
+            font-size: 13px; 
+            letter-spacing: 2px; 
+        } 
+ 
+        .dropdown-menu a:hover { 
+            background: #091e16; 
+        } 
+ 
+        .hero { 
+            position: relative; 
+            width: 100%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: flex-start; 
+            text-align: center; 
+            padding: 95px 0 0 0; 
+            overflow: hidden; 
+            background: rgba(11, 65, 16, 0.406); 
+        } 
+ 
+        .hero-bg { 
+            position: relative; 
+            display: block; 
+            width: 100%; 
+            height: auto; 
+            z-index: 1; 
+            animation: panAnimation1 4.5s ease-out forwards; 
+        } 
+ 
+        .hero-overlay { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: 2; 
+            pointer-events: none; 
+        } 
+ 
+        .hero-content { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            z-index: 3; 
+            max-width: 800px; 
+            width: 90%; 
+        } 
+ 
+        .hero h1 { 
+            font-size: 70px; 
+            font-weight: normal; 
+            line-height: 1.05; 
+            margin-bottom: 25px; 
+            color: #9dceff; 
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); 
+            opacity: 0; 
+            transform: translateY(20px); 
+            animation: textAppear 1.4s ease-out 2.2s forwards; 
+        } 
+ 
+        .hero p { 
+            color: #9dceff; 
+            font-size: 18px; 
+            margin-bottom: 35px; 
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9); 
+            opacity: 0; 
+            transform: translateY(20px); 
+            animation: textAppear 1.2s ease-out 2.8s forwards; 
+        } 
+ 
+        .hero .button { 
+            opacity: 0; 
+            transform: translateY(20px); 
+            animation: textAppear 1.2s ease-out 3.3s forwards; 
+        } 
+ 
+        @keyframes panAnimation1 { 
+            0% { 
+                transform: scale(1.05); 
+                transform-origin: top center; 
+                opacity: 0.4; 
+            } 
+ 
+            100% { 
+                transform: scale(1); 
+                transform-origin: top center; 
+                opacity: 1; 
+            } 
+        } 
+ 
+        @keyframes textAppear { 
+            0% { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            } 
+ 
+            100% { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } 
+        } 
+ 
+        .button { 
+            display: inline-block; 
+            padding: 15px 32px; 
+            border: 1px solid #ffffff; 
+            text-decoration: none; 
+            color: #ffffff; 
+            letter-spacing: 2px; 
+            font-size: 12px; 
+            background: rgba(0, 0, 0, 0.3); 
+            transition: all 0.3s; 
+        } 
+ 
+        .button:hover { 
+            background: #ffffff; 
+            color: #000000; 
+        } 
+ 
+        .studio-footer { 
+            width: 100%; 
+            height: 180px; 
+            background: #051711; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        } 
+ 
+        .studio-name { 
+            font-family: "Amsterdam Four_ttf", cursive; 
+            font-size: 55px; 
+            color: #ffffff; 
+            letter-spacing: 2px; 
+        } 
+ 
+        @media (max-width: 850px) { 
+ 
+            header { 
+                justify-content: center; 
+            } 
+ 
+            .desktop-menu { 
+                display: none; 
+            } 
+ 
+            .menu-container { 
+                display: block; 
+                position: absolute; 
+                right: 20px; 
+            } 
+
+            .hero { 
+                padding-top: 90px; 
+            } 
+
+            .hero-bg { 
+                width: 100%; 
+                height: auto; 
+                min-height: 520px; 
+                object-fit: contain; 
+            } 
+ 
+            .hero h1 { 
+                font-size: 44px; 
+            } 
+ 
+            .studio-logo { 
+                width: 90px; 
+                top: 10px; 
+                left: 7%; 
+                z-index: 101; 
+            } 
+
+            .studio-footer { 
+                height: 100px; 
+            } 
+
+            .studio-name { 
+                font-size: 34px; 
+            } 
+        } 
+ 
+    </style> 
+</head> 
+ 
+<body> 
+ 
+<header> 
+ 
+    <img src="images/logo.png" 
+         alt="My Art Studio Logo" 
+         class="studio-logo"> 
+ 
+    <nav class="desktop-menu"> 
+        <a href="#home">HOME</a> 
+        <a href="about.html">ABOUT</a> 
+        <a href="paintings.html">PAINTINGS</a> 
+        <a href="#contact">CONTACT</a> 
+    </nav> 
+ 
+    <div class="menu-container"> 
+ 
+        <button class="menu-button" id="menuButton">☰</button> 
+ 
+        <nav class="dropdown-menu" id="dropdownMenu"> 
+            <a href="#home">HOME</a> 
+            <a href="about.html">ABOUT</a> 
+            <a href="paintings.html">PAINTINGS</a> 
+            <a href="#contact">CONTACT</a> 
+        </nav> 
+ 
+    </div> 
+ 
+</header> 
+ 
+<div class="green-divider"></div> 
+ 
+<section class="hero" id="home"> 
+ 
+    <img src="images/(1).png" 
+         class="hero-bg"> 
+ 
+    <div class="hero-overlay"></div> 
+ 
+    <div class="hero-content"> 
+ 
+        <h1> 
+            Art That Speaks<br> 
+            Without Words 
+        </h1> 
+ 
+        <p> 
+            Original paintings created with passion, emotion and imagination. 
+        </p> 
+ 
+        <a href="paintings.html" class="button"> 
+            EXPLORE PAINTINGS 
+        </a> 
+ 
+    </div> 
+ 
+</section> 
+ 
+<footer class="studio-footer"> 
+    <div class="studio-name">Ciela Art</div> 
+</footer> 
+ 
+<script> 
+ 
+    const menuButton = document.getElementById('menuButton'); 
+    const dropdownMenu = document.getElementById('dropdownMenu'); 
+ 
+    menuButton.addEventListener('click', function() { 
+        dropdownMenu.classList.toggle('open'); 
+    }); 
+ 
+ 
+    const homeLinks = document.querySelectorAll('a[href="#home"]'); 
+    const heroBg = document.querySelector('.hero-bg'); 
+ 
+    homeLinks.forEach(link => { 
+ 
+        link.addEventListener('click', function() { 
+ 
+            dropdownMenu.classList.remove('open'); 
+ 
+            if (heroBg) { 
+ 
+                heroBg.style.animation = 'none'; 
+ 
+                void heroBg.offsetWidth; 
+ 
+                heroBg.style.animation = 
+                    'panAnimation1 4.5s ease-out forwards'; 
+            } 
+ 
+            const heading = document.querySelector('.hero h1'); 
+            const paragraph = document.querySelector('.hero p'); 
+            const button = document.querySelector('.hero .button'); 
+ 
+            if (heading && paragraph && button) { 
+ 
+                heading.style.animation = 'none'; 
+                paragraph.style.animation = 'none'; 
+                button.style.animation = 'none'; 
+ 
+                void heading.offsetWidth; 
+                void paragraph.offsetWidth; 
+                void button.offsetWidth; 
+ 
+                heading.style.animation = 
+                    'textAppear 1.4s ease-out 2.2s forwards'; 
+ 
+                paragraph.style.animation = 
+                    'textAppear 1.2s ease-out 2.8s forwards'; 
+ 
+                button.style.animation = 
+                    'textAppear 1.2s ease-out 3.3s forwards'; 
+            } 
+ 
+        }); 
+ 
+    }); 
+ 
+</script> 
+ 
+</body> 
 </html>
 
 
