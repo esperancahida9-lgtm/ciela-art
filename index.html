@@ -6,8 +6,7 @@
     <title>My Art Studio</title>
 
     <style>
-
-        @import url('https://db.onlinewebfonts.com/c/07cb29fdcb073fff840edc6de2067b50?family=Amsterdam+Four_ttf'); 
+        @import url('https://onlinewebfonts.com'); 
  
         * { 
             box-sizing: border-box; 
@@ -124,20 +123,24 @@
         .hero { 
             position: relative; 
             width: 100%; 
+            height: 100vh; /* Full screen për kompjuterin */
             display: flex; 
             justify-content: center; 
-            align-items: flex-start; 
+            align-items: center; /* Pozicionon tekstin fiks në mes */
             text-align: center; 
-            padding: 95px 0 0 0; 
+            padding: 0; 
             overflow: hidden; 
             background: rgba(11, 65, 16, 0.406); 
         } 
  
         .hero-bg { 
-            position: relative; 
-            display: block; 
+            position: absolute; 
+            top: 0;
+            left: 0;
             width: 100%; 
-            height: auto; 
+            height: 100%; 
+            object-fit: cover; /* Mbulon hapësirën pa u shtypur */
+            object-position: center;
             z-index: 1; 
             animation: panAnimation1 4.5s ease-out forwards; 
         } 
@@ -154,10 +157,7 @@
         } 
  
         .hero-content { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
+            position: relative; /* Ndryshuar që animacionet të funksionojnë saktë */
             z-index: 3; 
             max-width: 800px; 
             width: 90%; 
@@ -185,38 +185,6 @@
             animation: textAppear 1.2s ease-out 2.8s forwards; 
         } 
  
-        .hero .button { 
-            opacity: 0; 
-            transform: translateY(20px); 
-            animation: textAppear 1.2s ease-out 3.3s forwards; 
-        } 
- 
-        @keyframes panAnimation1 { 
-            0% { 
-                transform: scale(1.05); 
-                transform-origin: top center; 
-                opacity: 0.4; 
-            } 
- 
-            100% { 
-                transform: scale(1); 
-                transform-origin: top center; 
-                opacity: 1; 
-            } 
-        } 
- 
-        @keyframes textAppear { 
-            0% { 
-                opacity: 0; 
-                transform: translateY(20px); 
-            } 
- 
-            100% { 
-                opacity: 1; 
-                transform: translateY(0); 
-            } 
-        } 
- 
         .button { 
             display: inline-block; 
             padding: 15px 32px; 
@@ -232,6 +200,12 @@
         .button:hover { 
             background: #ffffff; 
             color: #000000; 
+        } 
+
+        .hero .button { 
+            opacity: 0; 
+            transform: translateY(20px); 
+            animation: textAppear 1.2s ease-out 3.3s forwards; 
         } 
  
         .studio-footer { 
@@ -250,75 +224,105 @@
             letter-spacing: 2px; 
         } 
  
-       @media (max-width: 850px) {
-
-    header {
-        height: 37px;
-        justify-content: center;
-    }
-
-    .desktop-menu {
-        display: none;
-    }
-
-    .menu-container {
-        display: block;
-        position: absolute;
-        right: 15px;
-    }
-
-    .menu-button {
-        font-size: 26px;
-    }
-
-    .green-divider {
-        height: 5px;
-        top: 37px;
-    }
-
-    .hero {
-   padding-top: 75px;
-    height: auto;
-}
-    .hero-bg {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    min-height: 0;
-    object-fit: contain;
-    display: block;
-}
-
-    .hero h1 {
-        font-size: 44px;
-    }
-
-    .studio-logo {
-        width: 55px;
-        top: 15px;
-        left: 7%;
-        z-index: 101;
-    }
-
-    .studio-footer {
-      height: 60px;
-    margin-top: 0;
-}
-
-    .studio-name {
-          font-size: 17px;
-}
+        @keyframes panAnimation1 { 
+            0% { 
+                transform: scale(1.05); 
+                transform-origin: top center; 
+                opacity: 0.4; 
+            } 
+            100% { 
+                transform: scale(1); 
+                transform-origin: top center; 
+                opacity: 1; 
+            } 
+        } 
  
+        @keyframes textAppear { 
+            0% { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            } 
+            100% { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } 
+        }
+
+        /* 📱 RREGULLIMET PËR TELEFON (RESPONSIVE) */
+        @media (max-width: 850px) {
+            header {
+                height: 37px;
+                justify-content: center;
+            }
+
+            .desktop-menu {
+                display: none;
+            }
+
+            .menu-container {
+                display: block;
+                position: absolute;
+                right: 15px;
+            }
+
+            .menu-button {
+                font-size: 26px;
+            }
+
+            .green-divider {
+                height: 5px;
+                top: 37px;
+            }
+
+            .hero {
+                padding-top: 0;
+                height: 100dvh; /* Detyron full screen dinamik në telefon */
+            }
+
+            .hero-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                max-width: none;
+                min-height: 100%;
+                object-fit: cover; /* Fotoja mbush ekranin pa u deformuar */
+                object-position: center;
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 38px; /* Madhësi më e përshtatshme për ekranet e vegjël */
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .studio-logo {
+                width: 55px;
+                top: 15px;
+                left: 7%;
+                z-index: 101;
+            }
+
+            .studio-footer {
+                height: 60px;
+                margin-top: 0;
+            }
+
+            .studio-name {
+                font-size: 17px;
+            }
+        }
     </style> 
 </head> 
  
 <body> 
  
 <header> 
- 
-    <img src="images/logo.png" 
-         alt="My Art Studio Logo" 
-         class="studio-logo"> 
+    <img src="images/logo.png" alt="My Art Studio Logo" class="studio-logo"> 
  
     <nav class="desktop-menu"> 
         <a href="#home">HOME</a> 
@@ -328,46 +332,27 @@
     </nav> 
  
     <div class="menu-container"> 
- 
         <button class="menu-button" id="menuButton">☰</button> 
- 
         <nav class="dropdown-menu" id="dropdownMenu"> 
             <a href="#home">HOME</a> 
             <a href="about.html">ABOUT</a> 
             <a href="paintings.html">PAINTINGS</a> 
             <a href="#contact">CONTACT</a> 
         </nav> 
- 
     </div> 
- 
 </header> 
  
 <div class="green-divider"></div> 
  
 <section class="hero" id="home"> 
- 
-    <img src="images/(1).png" 
-         class="hero-bg"> 
- 
+    <img src="images/(1).png" class="hero-bg"> 
     <div class="hero-overlay"></div> 
  
     <div class="hero-content"> 
- 
-        <h1> 
-            Art That Speaks<br> 
-            Without Words 
-        </h1> 
- 
-        <p> 
-            Original paintings created with passion, emotion and imagination. 
-        </p> 
- 
-        <a href="paintings.html" class="button"> 
-            EXPLORE PAINTINGS 
-        </a> 
- 
+        <h1>Art That Speaks<br>Without Words</h1> 
+        <p>Original paintings created with passion, emotion and imagination.</p> 
+        <a href="paintings.html" class="button">EXPLORE PAINTINGS</a> 
     </div> 
- 
 </section> 
  
 <footer class="studio-footer"> 
@@ -375,7 +360,6 @@
 </footer> 
  
 <script> 
- 
     const menuButton = document.getElementById('menuButton'); 
     const dropdownMenu = document.getElementById('dropdownMenu'); 
  
@@ -387,53 +371,7 @@
     const heroBg = document.querySelector('.hero-bg'); 
  
     homeLinks.forEach(link => { 
- 
-        link.addEventListener('click', function() { 
- 
-            dropdownMenu.classList.remove('open'); 
- 
-            if (heroBg) { 
- 
-                heroBg.style.animation = 'none'; 
- 
-                void heroBg.offsetWidth; 
- 
-                heroBg.style.animation = 
-                    'panAnimation1 4.5s ease-out forwards'; 
-            } 
- 
-            const heading = document.querySelector('.hero h1'); 
-            const paragraph = document.querySelector('.hero p'); 
-            const button = document.querySelector('.hero .button'); 
- 
-            if (heading && paragraph && button) { 
- 
-                heading.style.animation = 'none'; 
-                paragraph.style.animation = 'none'; 
-                button.style.animation = 'none'; 
- 
-                void heading.offsetWidth; 
-                void paragraph.offsetWidth; 
-                void button.offsetWidth; 
- 
-                heading.style.animation = 
-                    'textAppear 1.4s ease-out 2.2s forwards'; 
- 
-                paragraph.style.animation = 
-                    'textAppear 1.2s ease-out 2.8s forwards'; 
- 
-                button.style.animation = 
-                    'textAppear 1.2s ease-out 3.3s forwards'; 
-            } 
- 
-        }); 
- 
-    }); 
- 
-</script> 
- 
-</body> 
-</html>
+
 
 
 
