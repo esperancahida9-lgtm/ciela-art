@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - My Art Studio</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+       body {
+            font-family: Georgia, serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+         header {
+            height: 65px; /* Lartësia e hollë dhe elegante */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #ddd6ce;
+            background: rgba(151, 231, 163, 0.35);
+            backdrop-filter: blur(5px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        /* VIJA NDARESE: Qëndron plotësisht e palëvizshme në vend në sfond */
+        .green-divider {
+            height: 15px; /* Trashësia sa gjysmë gisht */
+            background: #051711; /* Ngjyra jeshile e errët */
+            position: absolute; 
+            top: 65px; 
+            left: 0;
+            width: 100%;
+            z-index: 99;
+        }
+
+        /* Efekti i logos që varet jashtë shiritit */
+        .studio-logo {
+            width: 110px; 
+            height: auto;
+            display: block;
+            position: absolute;
+            top: 10px; 
+            left: 7%;  
+            z-index: 101; 
+            filter: brightness(0) saturate(100%) invert(91%) sepia(25%) saturate(750%) hue-rotate(5deg) brightness(110%) contrast(90%);
+        }
+
+        /* 💻 MENUJA PËR LAPTOP */
+        .desktop-menu {
+            display: flex;
+            gap: 30px;
+            margin-left: auto; 
+        }
+        
+        .desktop-menu a {
+            color: #79bb99;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .desktop-menu a:hover {
+            color: #ffffff;
+        }
+
+        /* 📱 MENUJA PËR TELEFON */
+        .menu-container {
+            display: none;
+            position: relative;
+        }
+        
+        .menu-button {
+            background: none;
+            border: none;
+            color: #70ad6b;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background: #111111;
+            min-width: 180px;
+            padding: 15px 0;
+            border: 1px solid #333333;
+            z-index: 200;
+        }
+
+        .dropdown-menu.open {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            color: #79bb99;
+            text-decoration: none;
+            padding: 14px 25px;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .dropdown-menu a:hover {
+            background: #091e16;
+        }
+
+        /* ABOUT PAGE */
+        .about-section {
+            min-height: 100vh;
+            padding: 150px 7% 100px 7%;
+            display: flex;
+            align-items: center;
+            background: #000000;
+        }
+
+        .about-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 80px;
+        }
+
+        .about-image {
+            width: 500px;
+            aspect-ratio: 3 / 4;
+            flex-shrink: 0;
+            overflow: hidden;
+            background: #111111;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .about-text h1 {
+            font-size: 52px;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+        .about-text p {
+            color: #c8c2bc;
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        /* 📱 RREGULLAT E TUA PËR CELULAR (Ekran nën 900px) */
+        @media (max-width: 900px) {
+            header {
+                justify-content: center; /* Logoja kthehet në qendër */
+            }
+            .desktop-menu {
+                display: none; /* Zhduket shiriti i hapur i laptopit */
+            }
+            .menu-container {
+                display: block; /* Shfaqen 3 vijat për celular */
+                position: absolute;
+                right: 20px;
+            }
+            .about-container {
+                flex-direction: column;
+                gap: 50px;
+            }
+            .about-image {
+                width: 80%;
+                max-width: 500px;
+            }
+            .about-text {
+                max-width: 100%;
+                text-align: center;
+            }
+            .about-text h1 {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html">
+        <img src="images/logo.png" alt="My Art Studio Logo" class="studio-logo">
+    </a>
+
+    <!-- 💻 Shfaqet Vetëm në Laptop -->
+    <nav class="desktop-menu">
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="paintings.html">PAINTINGS</a>
+        <a href="index.html#contact">CONTACT</a>
+    </nav>
+
+    <!-- 📱 Shfaqet Vetëm në Celular -->
+    <div class="menu-container">
+        <button class="menu-button" id="menuButton">☰</button>
+        <nav class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="paintings.html">PAINTINGS</a>
+            <a href="index.html#contact">CONTACT</a>
+        </nav>
+    </div>
+</header>
+
+<section class="about-section">
+    <div class="about-container">
+
+        <!-- FOTOJA JOTE -->
+        <div class="about-image">
+            <img src="images/lanca.jpeg" alt="lanca">
+        </div>
+
+        <!-- SHKRIMI -->
+        <div class="about-text">
+            <h1>About Me</h1>
+            <p>This is where your story will go.</p>
+            <p>Here we will write your personal introduction and your story as an artist.</p>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    const menuButton = document.getElementById('menuButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuButton.addEventListener('click', function(e) {
+        dropdownMenu.classList.toggle('open');
+        e.stopPropagation();
+    });
+
+    document.addEventListener('click', function() {
+        dropdownMenu.classList.remove('open');
+    });
+</script>
+
+</body>
+</html>

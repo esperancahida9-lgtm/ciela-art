@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paintings - My Art Studio</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Ndryshuar që logoja dhe menuja të hapen në skaje në laptop */
+            padding: 0 7%; /* Përshtatur me gjerësinë e galerisë */
+            border-bottom: 1px solid #ddd6ce;
+            background: rgba(151, 231, 163, 0.35);
+            backdrop-filter: blur(5px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .studio-logo {
+            width: 95px;
+            height: auto;
+            display: block;
+            filter: brightness(0) saturate(100%) invert(91%) sepia(25%) saturate(750%) hue-rotate(5deg) brightness(110%) contrast(90%);
+        }
+
+        /* MENUJA PËR LAPTOP (E hapur direkt në shirit) */
+        .desktop-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .desktop-menu a {
+            color: #79bb99;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .desktop-menu a:hover {
+            color: #ffffff;
+        }
+
+        /* MENUJA PËR TELEFON (Fshihet kur jemi në laptop) */
+        .menu-container {
+            display: none; /* Do të shfaqet vetëm në celular nëpërmjet @media */
+            position: relative;
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            color: #70ad6b;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background: #111111;
+            min-width: 180px;
+            padding: 15px 0;
+            border: 1px solid #333333;
+            z-index: 200;
+        }
+
+        .dropdown-menu.open {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            color: #79bb99;
+            text-decoration: none;
+            padding: 14px 25px;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .dropdown-menu a:hover {
+            background: #091e16;
+        }
+
+        .main-content {
+            padding-top: 120px; 
+        }
+
+        .gallery {
+            padding: 40px 7% 100px 7%;
+            background: #000000;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            font-size: 42px;
+            font-weight: normal;
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+        }
+
+        .paintings {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* Animacioni yt luksoz 35 sekonda */
+        .painting {
+            background: #03120e;
+            border: 1px solid #222222;
+            animation: masterclassSlow 35s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+        }
+
+        @keyframes masterclassSlow {
+            0% {
+                opacity: 0;
+                transform: scale(1.06);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .painting-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #04130e;
+            overflow: hidden;
+        }
+
+        .painting-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .painting-info {
+            padding: 22px;
+        }
+
+        .painting-info h3 {
+            font-size: 20px;
+            font-weight: normal;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .painting-info p {
+            color: #777069;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        /* 📱 NDDRYSHIMI KRYESOR (Për ekrane më të vegjël se 850px, si telefonat) */
+        @media (max-width: 850px) {
+            header {
+                justify-content: center; /* Logoja kthehet në qendër në celular */
+            }
+            .desktop-menu {
+                display: none; /* Zhduket shiriti i hapur i laptopit */
+            }
+            .menu-container {
+                display: block; /* Shfaqen 3 vijat (☰) për celular */
+                position: absolute;
+                right: 20px;
+            }
+            .paintings {
+                grid-template-columns: 1fr;
+            }
+            .gallery h2 {
+                font-size: 32px;
+            }
+            .studio-logo {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html">
+        <img src="images/logo.png" alt="My Art Studio Logo" class="studio-logo">
+    </a>
+
+    <!-- 💻 Kjo menu shfaqet Vetëm në Laptop -->
+    <nav class="desktop-menu">
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="paintings.html">PAINTINGS</a>
+        <a href="index.html#contact">CONTACT</a>
+    </nav>
+
+    <!-- 📱 Kjo menu me 3 vija shfaqet Vetëm në Celular -->
+    <div class="menu-container">
+        <button class="menu-button" id="menuButton">☰</button>
+        <nav class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="paintings.html">PAINTINGS</a>
+            <a href="index.html#contact">CONTACT</a>
+        </nav>
+    </div>
+</header>
+
+<div class="main-content">
+    <section class="gallery">
+        <h2>Artwork Collection</h2>
+        <div class="paintings">
+            
+            <!-- Piktura 1 -->
+            <article class="painting">
+                <div class="painting-image">
+                    <img src="images/vajza.PNG" alt="El jardin">
+                </div>
+                <div class="painting-info">
+                    <h3>El jardin</h3>
+                    <p>Oil on Canvas, 2026</p>
+                    <div class="price">1000 €</div>
+                </div>
+            </article>
+
+            <!-- Piktura 2 -->
+            <article class="painting">
+                <div class="painting-image">
+                    <img src="images/kornix.jpeg" alt="El mercado de las flores">
+                </div>
+                <div class="painting-info">
+                    <h3>El mercado de las flores</h3>
+                    <p>Oil on Canvas, 2026</p>
+                    <div class="price">10,500 €</div>
+                </div>
+            </article>
+
+            <!-- Piktura 3 -->
+            <article class="painting">
+                <div class="painting-image">
+                    <img src="images/(1).PNG" alt="Jesus y su angel">
+                </div>
+                <div class="painting-info">
+                    <h3>Jesus y su angel</h3>
+                    <p>Oil on Canvas, 2026</p>
+                    <div class="price">5000 €</div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+</div>
+
+<script>
+    const menuButton = document.getElementById('menuButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuButton.addEventListener('click', function(e) {
+        dropdownMenu.classList.toggle('open');
+        e.stopPropagation();
+    });
+
+    document.addEventListener('click', function() {
+        dropdownMenu.classList.remove('open');
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
