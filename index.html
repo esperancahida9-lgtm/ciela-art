@@ -168,12 +168,6 @@
         }
 
 
-        /*
-           FOTOJA QËNDRON ME RAPORTIN E SAJ.
-           Nuk përdorim object-fit: cover në desktop.
-           Kështu fotografia nuk pritet.
-        */
-
         .hero-bg {
             position: relative;
             display: block;
@@ -201,11 +195,6 @@
             pointer-events: none;
         }
 
-
-        /*
-           SHKRIMI QËNDRON MBI FOTOGRAFI.
-           Ky nuk ndryshon gjatë slideshow.
-        */
 
         .hero-content {
             position: absolute;
@@ -353,7 +342,7 @@
 
 
         /* =========================
-           TELEFON (KODI I NDYSHUAR)
+           TELEFON 
         ========================= */
 
         @media (max-width: 850px) {
@@ -364,7 +353,6 @@
                 padding: 0 5%;
             }
 
-
             .green-divider {
                 top: 55px;
             }
@@ -373,18 +361,12 @@
                 display: none;
             }
 
-
             .menu-container {
                 display: block;
                 position: absolute;
                 right: 20px;
             }
 
-
-            /* 
-               RREGULLIMI: Në celular përdorim ekran të plotë (100vh)
-               dhe e qendrojmë përmbajtjen në mes si te shembulli.
-            */
             .hero {
                 width: 100%;
                 height: 100vh;
@@ -397,11 +379,6 @@
                 background: #000000;
             }
 
-
-            /* 
-               KORNIZA SHTRIHET NË ÇDO KËND.
-               Përdorim object-fit: cover që të mbushë sfondin pa hapësira të zeza.
-            */
             .hero-bg { 
                 position: absolute;
                 top: 0;
@@ -433,62 +410,59 @@
                 text-align: center;
             }
 
-
             .hero h1 {
                 font-size: 34px;
                 line-height: 1.2;
                 margin-bottom: 15px;
             }
 
+            .hero p {
+                font-size: 14px;
+                margin-bottom: 30px;
+            }
+
+            .button {
+                padding: 12px 30px;
+                font-size: 11px;
+                border-radius: 30px;
+                display: inline-block;
+            }
+
+            .studio-logo {
+                width: 90px;
+                top: 5px;
+                left: 5%;
+                z-index: 101;
+            }
+
+            .studio-footer {
+                height: 100px;
+            }
+
+            .studio-name {
+                font-size: 34px;
+            }
+        }
+
+    </style>
+</head>
+<body>
 
 
-.hero p {
-font-size: 14px;
-margin-bottom: 30px;
-}
-/* Butoni bëhet i rrumbullakosur fiks si te shembulli yt */
-.button {
-padding: 12px 30px;
-font-size: 11px;
-border-radius: 30px;
-display: inline-block;
-}
-.studio-logo {
-width: 90px;
-top: 5px;
-left: 5%;
-z-index: 101;
-}
-.studio-footer {
-height: 100px;
-}
-.studio-name {
-font-size: 34px;
-}
-}
 Ciela Art
-const menuButton =
-document.getElementById('menuButton');
-const dropdownMenu =
-document.getElementById('dropdownMenu');
+const menuButton = document.getElementById('menuButton');
+const dropdownMenu = document.getElementById('dropdownMenu');
 /* =========================
 MOBILE MENU
 ========================= */
-menuButton.addEventListener(
-'click',
-function() {
+menuButton.addEventListener('click', function() {
 dropdownMenu.classList.toggle('open');
-}
-);
+});
 /* =========================
 HOME LINKS
 ========================= */
-const homeLinks =
-document.querySelectorAll(
-'a[href="#home"]'
-);
-const heroBg =
-document.querySelector('.hero-bg');
+const homeLinks = document.querySelectorAll('a[href="#home"]');
+const heroBg = document.querySelector('.hero-bg');
 /* =========================
 SLIDESHOW
 ========================= */
@@ -499,43 +473,13 @@ const slideshowImages = [
 ];
 let currentSlide = 0;
 setTimeout(function() {
-/*
-Çdo 5.5 sekonda
-ndërrohet fotografia.
-*/
 setInterval(function() {
-/*
-Ndalojmë animacionin
-e fotografisë aktuale.
-*/
 heroBg.style.animation = 'none';
-/*
-Rifreskojmë animacionin
-pa prekur shkrimin.
-*/
 void heroBg.offsetWidth;
-/*
-Ndryshojmë vetëm fotografinë.
-*/
-heroBg.src =
-slideshowImages[currentSlide];
-/*
-E njëjta animacion si hyrja.
-*/
-heroBg.style.animation =
-'panAnimation1 4.5s ease-out forwards';
-/*
-Kalojmë te fotografia tjetër.
-*/
+heroBg.src = slideshowImages[currentSlide];
+heroBg.style.animation = 'panAnimation1 4.5s ease-out forwards';
 currentSlide++;
-/*
-Kur arrijmë në fund,
-kthehemi te fotografia e parë.
-*/
-if (
-currentSlide >=
-slideshowImages.length
-) {
+if (currentSlide >= slideshowImages.length) {
 currentSlide = 0;
 }
 }, 5500);
@@ -545,66 +489,33 @@ currentSlide = 0;
 HOME CLICK
 ========================= */
 homeLinks.forEach(function(link) {
-link.addEventListener(
-'click',
-function() {
-dropdownMenu.classList.remove(
-'open'
-);
-/*
-Kur shtypet HOME,
-fotografia fillon përsëri
-animacionin e saj.
-*/
+link.addEventListener('click', function() {
+dropdownMenu.classList.remove('open');
 if (heroBg) {
-heroBg.style.animation =
-'none';
+heroBg.style.animation = 'none';
 void heroBg.offsetWidth;
-heroBg.style.animation =
-'panAnimation1 4.5s ease-out forwards';
+heroBg.style.animation = 'panAnimation1 4.5s ease-out forwards';
 }
-/*
-SHKRIMI RIFILLON VETËM
-KUR KLIKOJMË HOME.
-Gjatë slideshow-it nuk
-preket fare.
-*/
-const heading =
-document.querySelector(
-'.hero h1'
-);
-const paragraph =
-document.querySelector(
-'.hero p'
-);
-const button =
-document.querySelector(
-'.hero .button'
-);
-if (
-heading &&
-paragraph &&
-button
-) {
-heading.style.animation =
-'none';
-paragraph.style.animation =
-'none';
-button.style.animation =
-'none';
+const heading = document.querySelector('.hero h1');
+const paragraph = document.querySelector('.hero p');
+const button = document.querySelector('.hero .button');
+if (heading && paragraph && button) {
+heading.style.animation = 'none';
+paragraph.style.animation = 'none';
+button.style.animation = 'none';
 void heading.offsetWidth;
 void paragraph.offsetWidth;
 void button.offsetWidth;
-heading.style.animation =
-'textAppear 1.4s ease-out 2.2s forwards';
-paragraph.style.animation =
-'textAppear 1.2s ease-out 2.8s forwards';
-button.style.animation =
-'textAppear 1.2s ease-out 3.3s forwards';
+heading.style.animation = 'textAppear 1.4s ease-out 2.2s forwards';
+paragraph.style.animation = 'textAppear 1.2s ease-out 2.8s forwards';
+button.style.animation = 'textAppear 1.2s ease-out 3.3s forwards';
 }
-}
-);
 });
+});
+
+
+
+
 
 
 
