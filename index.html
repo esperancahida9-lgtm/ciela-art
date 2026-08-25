@@ -396,7 +396,9 @@
        Shkrimi nuk preket dhe nuk rinis animacionin.
     */
 
-    if (window.innerWidth > 850 && heroBg) {
+    let slideshowStarted = false;
+let currentImage = 0;
+
 
         const slideshowImages = [
             'images/kornix.jpeg',
