@@ -384,6 +384,51 @@
  
     const homeLinks = document.querySelectorAll('a[href="#home"]'); 
     const heroBg = document.querySelector('.hero-bg'); 
+
+
+    /*
+       SLIDESHOW VETEM PER LAPTOP
+
+       Hyrja fillestare nuk preket fare.
+       Pasi mbarojnë 4.5 sekondat e hyrjes,
+       fillon slideshow-i.
+
+       Shkrimi nuk preket dhe nuk rinis animacionin.
+    */
+
+    if (window.innerWidth > 850 && heroBg) {
+
+        const slideshowImages = [
+            'images/kornix.jpeg',
+            'images/(1).png'
+        ];
+
+        let currentSlide = 0;
+
+        setTimeout(function() {
+
+            setInterval(function() {
+
+                heroBg.style.animation = 'none';
+
+                void heroBg.offsetWidth;
+
+                heroBg.src = slideshowImages[currentSlide];
+
+                heroBg.style.animation =
+                    'panAnimation1 4.5s ease-out forwards';
+
+                currentSlide++;
+
+                if (currentSlide >= slideshowImages.length) {
+                    currentSlide = 0;
+                }
+
+            }, 4500);
+
+        }, 4500);
+    }
+ 
  
     homeLinks.forEach(link => { 
  
@@ -433,28 +478,3 @@
  
 </body> 
 </html>
-
-
-
-
-
-
-
-
-
-
-                
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
