@@ -7,7 +7,7 @@
 
     <style>
 
-        @import url('https://db.onlinewebfonts.com/c/07cb29fdcb073fff840edc6de2067b50?family=Amsterdam+Four_ttf');
+        @import url('https://onlinewebfonts.com');
 
         * {
             box-sizing: border-box;
@@ -170,8 +170,7 @@
 
         /*
            FOTOJA QËNDRON ME RAPORTIN E SAJ.
-
-           Nuk përdorim object-fit: cover.
+           Nuk përdorim object-fit: cover në desktop.
            Kështu fotografia nuk pritet.
         */
 
@@ -205,7 +204,6 @@
 
         /*
            SHKRIMI QËNDRON MBI FOTOGRAFI.
-
            Ky nuk ndryshon gjatë slideshow.
         */
 
@@ -355,21 +353,21 @@
 
 
         /* =========================
-           TELEFON
+           TELEFON (KODI I NDYSHUAR)
         ========================= */
 
         @media (max-width: 850px) {
 
             header {
                 height: 55px;
-                justify-content: center;
+                justify-content: flex-end;
+                padding: 0 5%;
             }
 
 
             .green-divider {
                 top: 55px;
             }
-
 
             .desktop-menu {
                 display: none;
@@ -383,486 +381,232 @@
             }
 
 
-            /*
-               E RËNDËSISHME:
-
-               Edhe telefoni nuk përdor
-               object-fit: cover.
-
-               Fotografia mbetet e plotë.
+            /* 
+               RREGULLIMI: Në celular përdorim ekran të plotë (100vh)
+               dhe e qendrojmë përmbajtjen në mes si te shembulli.
             */
-
             .hero {
                 width: 100%;
-                height: auto;
-                min-height: 0;
-                padding-top: 95px;
+                height: 100vh;
+                padding-top: 55px;
                 overflow: hidden;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #000000;
             }
 
 
-         .hero-bg { 
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    object-fit: contain;
-    object-position: center;
-}   
+            /* 
+               KORNIZA SHTRIHET NË ÇDO KËND.
+               Përdorim object-fit: cover që të mbushë sfondin pa hapësira të zeza.
+            */
+            .hero-bg { 
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center;
+                z-index: 1;
+            }   
+
+            .hero-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.45);
+                z-index: 2;
+            }
+
+            .hero-content {
+                position: relative;
+                top: unset;
+                left: unset;
+                transform: unset;
+                z-index: 3;
+                width: 85%;
+                text-align: center;
+            }
 
 
             .hero h1 {
-                font-size: 44px;
-            }
-
-
-            .hero p {
-                font-size: 16px;
-            }
-
-
-            .studio-logo {
-                width: 110px;
-                top: 10px;
-                left: 7%;
-                z-index: 101;
-            }
-
-
-            .studio-footer {
-                height: 100px;
-            }
-
-
-            .studio-name {
                 font-size: 34px;
+                line-height: 1.2;
+                margin-bottom: 15px;
             }
-        }
 
-    </style>
-</head>
 
 
-<body>
+.hero p {
+font-size: 14px;
+margin-bottom: 30px;
+}
+/* Butoni bëhet i rrumbullakosur fiks si te shembulli yt */
+.button {
+padding: 12px 30px;
+font-size: 11px;
+border-radius: 30px;
+display: inline-block;
+}
+.studio-logo {
+width: 90px;
+top: 5px;
+left: 5%;
+z-index: 101;
+}
+.studio-footer {
+height: 100px;
+}
+.studio-name {
+font-size: 34px;
+}
+}
+Ciela Art
+const menuButton =
+document.getElementById('menuButton');
+const dropdownMenu =
+document.getElementById('dropdownMenu');
+/* =========================
+MOBILE MENU
+========================= */
+menuButton.addEventListener(
+'click',
+function() {
+dropdownMenu.classList.toggle('open');
+}
+);
+/* =========================
+HOME LINKS
+========================= */
+const homeLinks =
+document.querySelectorAll(
+'a[href="#home"]'
+);
+const heroBg =
+document.querySelector('.hero-bg');
+/* =========================
+SLIDESHOW
+========================= */
+if (heroBg) {
+const slideshowImages = [
+'images/kornix.jpeg',
+'images/(1).png'
+];
+let currentSlide = 0;
+setTimeout(function() {
+/*
+Çdo 5.5 sekonda
+ndërrohet fotografia.
+*/
+setInterval(function() {
+/*
+Ndalojmë animacionin
+e fotografisë aktuale.
+*/
+heroBg.style.animation = 'none';
+/*
+Rifreskojmë animacionin
+pa prekur shkrimin.
+*/
+void heroBg.offsetWidth;
+/*
+Ndryshojmë vetëm fotografinë.
+*/
+heroBg.src =
+slideshowImages[currentSlide];
+/*
+E njëjta animacion si hyrja.
+*/
+heroBg.style.animation =
+'panAnimation1 4.5s ease-out forwards';
+/*
+Kalojmë te fotografia tjetër.
+*/
+currentSlide++;
+/*
+Kur arrijmë në fund,
+kthehemi te fotografia e parë.
+*/
+if (
+currentSlide >=
+slideshowImages.length
+) {
+currentSlide = 0;
+}
+}, 5500);
+}, 4700);
+}
+/* =========================
+HOME CLICK
+========================= */
+homeLinks.forEach(function(link) {
+link.addEventListener(
+'click',
+function() {
+dropdownMenu.classList.remove(
+'open'
+);
+/*
+Kur shtypet HOME,
+fotografia fillon përsëri
+animacionin e saj.
+*/
+if (heroBg) {
+heroBg.style.animation =
+'none';
+void heroBg.offsetWidth;
+heroBg.style.animation =
+'panAnimation1 4.5s ease-out forwards';
+}
+/*
+SHKRIMI RIFILLON VETËM
+KUR KLIKOJMË HOME.
+Gjatë slideshow-it nuk
+preket fare.
+*/
+const heading =
+document.querySelector(
+'.hero h1'
+);
+const paragraph =
+document.querySelector(
+'.hero p'
+);
+const button =
+document.querySelector(
+'.hero .button'
+);
+if (
+heading &&
+paragraph &&
+button
+) {
+heading.style.animation =
+'none';
+paragraph.style.animation =
+'none';
+button.style.animation =
+'none';
+void heading.offsetWidth;
+void paragraph.offsetWidth;
+void button.offsetWidth;
+heading.style.animation =
+'textAppear 1.4s ease-out 2.2s forwards';
+paragraph.style.animation =
+'textAppear 1.2s ease-out 2.8s forwards';
+button.style.animation =
+'textAppear 1.2s ease-out 3.3s forwards';
+}
+}
+);
+});
 
 
-    <!-- =========================
-         HEADER
-    ========================= -->
 
-    <header>
 
-        <img
-            src="images/logo.png"
-            alt="My Art Studio Logo"
-            class="studio-logo"
-        >
 
-
-        <nav class="desktop-menu">
-
-            <a href="#home">
-                HOME
-            </a>
-
-            <a href="about.html">
-                ABOUT
-            </a>
-
-            <a href="paintings.html">
-                PAINTINGS
-            </a>
-
-            <a href="#contact">
-                CONTACT
-            </a>
-
-        </nav>
-
-
-        <div class="menu-container">
-
-            <button
-                class="menu-button"
-                id="menuButton"
-            >
-                ☰
-            </button>
-
-
-            <nav
-                class="dropdown-menu"
-                id="dropdownMenu"
-            >
-
-                <a href="#home">
-                    HOME
-                </a>
-
-                <a href="about.html">
-                    ABOUT
-                </a>
-
-                <a href="paintings.html">
-                    PAINTINGS
-                </a>
-
-                <a href="#contact">
-                    CONTACT
-                </a>
-
-            </nav>
-
-        </div>
-
-    </header>
-
-
-    <div class="green-divider"></div>
-
-
-    <!-- =========================
-         HOME
-    ========================= -->
-
-    <section
-        class="hero"
-        id="home"
-    >
-
-        <!--
-             FOTOJA KRYESORE
-             HYRJA FILLESTARE
-        -->
-
-        <img
-            src="images/(1).png"
-            class="hero-bg"
-            alt="Artwork"
-        >
-
-
-        <div class="hero-overlay"></div>
-
-
-        <!--
-             SHKRIMI
-
-             Ky shfaqet vetëm një herë.
-             Nuk preket nga slideshow.
-        -->
-
-        <div class="hero-content">
-
-            <h1>
-                Art That Speaks<br>
-                Without Words
-            </h1>
-
-
-            <p>
-                Original paintings created with passion,
-                emotion and imagination.
-            </p>
-
-
-            <a
-                href="paintings.html"
-                class="button"
-            >
-                EXPLORE PAINTINGS
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         FOOTER
-    ========================= -->
-
-    <footer class="studio-footer">
-
-        <div class="studio-name">
-            Ciela Art
-        </div>
-
-    </footer>
-
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
-
-    <script>
-
-        const menuButton =
-            document.getElementById('menuButton');
-
-        const dropdownMenu =
-            document.getElementById('dropdownMenu');
-
-
-        /* =========================
-           MOBILE MENU
-        ========================= */
-
-        menuButton.addEventListener(
-            'click',
-            function() {
-
-                dropdownMenu.classList.toggle('open');
-
-            }
-        );
-
-
-        /* =========================
-           HOME LINKS
-        ========================= */
-
-        const homeLinks =
-            document.querySelectorAll(
-                'a[href="#home"]'
-            );
-
-
-        const heroBg =
-            document.querySelector('.hero-bg');
-
-
-        /* =========================
-           SLIDESHOW
-        =========================
-
-           Punon në:
-
-           LAPTOP
-           TELEFON
-
-           Hyrja fillestare nuk preket.
-
-           4.5 sekonda:
-           hyrja fillestare
-
-           Pastaj:
-
-           kornix.jpeg
-           ↓
-           (1).png
-           ↓
-           kornix.jpeg
-           ↓
-           pa fund
-
-           Shkrimi nuk ndryshon.
-        */
-
-
-        if (heroBg) {
-
-            const slideshowImages = [
-
-                'images/kornix.jpeg',
-
-                'images/(1).png'
-
-            ];
-
-
-            let currentSlide = 0;
-
-
-            /*
-               PRESIM PAK MË SHUMË SE
-               ANIMACIONI FILLESTAR.
-
-               Kjo siguron që hyrja të
-               mbarojë komplet para
-               slideshow-it.
-            */
-
-            setTimeout(function() {
-
-
-                /*
-                   Çdo 5.5 sekonda
-                   ndërrohet fotografia.
-                */
-
-                setInterval(function() {
-
-
-                    /*
-                       Ndalojmë animacionin
-                       e fotografisë aktuale.
-                    */
-
-                    heroBg.style.animation = 'none';
-
-
-                    /*
-                       Rifreskojmë animacionin
-                       pa prekur shkrimin.
-                    */
-
-                    void heroBg.offsetWidth;
-
-
-                    /*
-                       Ndryshojmë vetëm fotografinë.
-                    */
-
-                    heroBg.src =
-                        slideshowImages[currentSlide];
-
-
-                    /*
-                       E njëjta animacion si hyrja.
-                    */
-
-                    heroBg.style.animation =
-                        'panAnimation1 4.5s ease-out forwards';
-
-
-                    /*
-                       Kalojmë te fotografia tjetër.
-                    */
-
-                    currentSlide++;
-
-
-                    /*
-                       Kur arrijmë në fund,
-                       kthehemi te fotografia e parë.
-                    */
-
-                    if (
-                        currentSlide >=
-                        slideshowImages.length
-                    ) {
-
-                        currentSlide = 0;
-
-                    }
-
-
-                }, 5500);
-
-
-            }, 4700);
-
-        }
-
-
-        /* =========================
-           HOME CLICK
-        ========================= */
-
-        homeLinks.forEach(function(link) {
-
-
-            link.addEventListener(
-                'click',
-                function() {
-
-
-                    dropdownMenu.classList.remove(
-                        'open'
-                    );
-
-
-                    /*
-                       Kur shtypet HOME,
-                       fotografia fillon përsëri
-                       animacionin e saj.
-                    */
-
-                    if (heroBg) {
-
-                        heroBg.style.animation =
-                            'none';
-
-
-                        void heroBg.offsetWidth;
-
-
-                        heroBg.style.animation =
-                            'panAnimation1 4.5s ease-out forwards';
-
-                    }
-
-
-                    /*
-                       SHKRIMI RIFILLON VETËM
-                       KUR KLIKOJMË HOME.
-
-                       Gjatë slideshow-it nuk
-                       preket fare.
-                    */
-
-                    const heading =
-                        document.querySelector(
-                            '.hero h1'
-                        );
-
-
-                    const paragraph =
-                        document.querySelector(
-                            '.hero p'
-                        );
-
-
-                    const button =
-                        document.querySelector(
-                            '.hero .button'
-                        );
-
-
-                    if (
-                        heading &&
-                        paragraph &&
-                        button
-                    ) {
-
-
-                        heading.style.animation =
-                            'none';
-
-
-                        paragraph.style.animation =
-                            'none';
-
-
-                        button.style.animation =
-                            'none';
-
-
-                        void heading.offsetWidth;
-                        void paragraph.offsetWidth;
-                        void button.offsetWidth;
-
-
-                        heading.style.animation =
-                            'textAppear 1.4s ease-out 2.2s forwards';
-
-
-                        paragraph.style.animation =
-                            'textAppear 1.2s ease-out 2.8s forwards';
-
-
-                        button.style.animation =
-                            'textAppear 1.2s ease-out 3.3s forwards';
-
-                    }
-
-                }
-            );
-
-        });
-
-    </script>
-
-
-</body>
-</html>
