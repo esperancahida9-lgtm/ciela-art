@@ -593,13 +593,13 @@
 
                 width: 100vw;
 
-                height: 100vh;
+                height: auto;
 
-                min-height: 100vh;
+                min-height: 0;
 
                 overflow: hidden;
 
-                padding: 0;
+                padding: 55px 0 0 0;
             }
 
 
@@ -609,11 +609,13 @@
 
                 width: 100%;
 
-                height: 100%;
+                height: auto;
 
-                min-height: 100%;
+                min-height: 0;
 
-                object-fit: cover;
+                display: block;
+
+                object-fit: contain;
 
                 object-position: center center;
             }
@@ -653,17 +655,11 @@
             }
 
 
-            /* MOBILE FOOTER */
+            /* MOBILE FOOTER - HIQET */
 
             .studio-footer {
 
-                height: 100px;
-            }
-
-
-            .studio-name {
-
-                font-size: 34px;
+                display: none;
             }
 
         }
@@ -825,12 +821,6 @@
 
 
     <footer class="studio-footer">
-
-        <div class="studio-name">
-
-            Ciela Art
-
-        </div>
 
     </footer>
 
