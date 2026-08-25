@@ -254,7 +254,9 @@
  
             header { 
                 height: 55px;
-                justify-content: center; 
+                justify-content: center;
+                background: rgba(145, 190, 150, 0.35);
+                backdrop-filter: blur(5px);
             } 
 
             .green-divider {
@@ -271,21 +273,21 @@
                 right: 20px; 
             } 
 
-            /* ================================
-               VETEM PER TELEFON
-               HERO ESHTE VETE ZONA E EKRANIT
-               ================================ */
+            /* =========================================
+               TELEFON:
+               FOTOGRAFIA ESHTE VETE FAQJA HOME
+               ========================================= */
 
             .hero { 
                 position: relative;
                 width: 100vw;
-                height: 100svh;
-                min-height: 100svh;
+                height: calc(100svh + 50px);
+                min-height: calc(100svh + 50px);
                 padding: 0;
                 margin: 0;
                 overflow: hidden;
                 display: block;
-                background: #000000;
+                background: transparent;
             } 
 
             .hero-bg { 
@@ -299,7 +301,7 @@
                 object-position: center;
                 display: block;
                 z-index: 1;
-            } 
+            }
 
             .hero-overlay { 
                 position: absolute;
@@ -319,13 +321,27 @@
                 max-width: 800px;
                 z-index: 3;
             }
-            
+
+            /* Ciela Art tani eshte mbi fotografi,
+               jo ne nje faqe te zeze me vete */
+
             .studio-footer { 
-                height: 50px; 
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 50px;
+                background: transparent;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 5;
             } 
 
             .studio-name { 
-                font-size: 34px; 
+                font-size: 34px;
+                color: #ffffff;
+                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
             } 
         } 
  
@@ -388,11 +404,11 @@
  
     </div> 
  
-</section> 
+    <footer class="studio-footer"> 
+        <div class="studio-name">Ciela Art</div> 
+    </footer> 
  
-<footer class="studio-footer"> 
-    <div class="studio-name">Ciela Art</div> 
-</footer> 
+</section> 
  
 <script> 
  
@@ -454,7 +470,6 @@
  
 </body> 
 </html>
-
 
 
 
