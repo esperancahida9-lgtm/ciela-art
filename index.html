@@ -249,8 +249,7 @@
 
         /* =========================
            HOME / HERO
-           
-           LAPTOP - KTHYER SIÇ E KISHE
+           LAPTOP - SIÇ E KISHE
         ========================= */
 
         .hero {
@@ -278,8 +277,7 @@
 
         /* =========================
            HERO IMAGE
-           
-           LAPTOP - KTHYER SIÇ E KISHE
+           LAPTOP - SIÇ E KISHE
         ========================= */
 
         .hero-bg {
@@ -457,6 +455,7 @@
 
         /* =========================
            INTRO IMAGE ANIMATION
+           HYRJA NUK PREKET
         ========================= */
 
         @keyframes heroEntrance {
@@ -485,6 +484,7 @@
 
         /* =========================
            TEXT ANIMATION
+           NUK PREKET
         ========================= */
 
         @keyframes textAppear {
@@ -517,6 +517,8 @@
 
                 transform: scale(1.05);
 
+                transform-origin: top center;
+
                 opacity: 0.4;
             }
 
@@ -524,6 +526,8 @@
             100% {
 
                 transform: scale(1);
+
+                transform-origin: top center;
 
                 opacity: 1;
             }
@@ -568,6 +572,7 @@
 
         /* ==================================================
            MOBILE
+           KJO PJESË MBETET SIÇ E KISHE
         ================================================== */
 
         @media (max-width: 850px) {
@@ -626,24 +631,22 @@
                 min-height: 100vh;
 
                 overflow: hidden;
+
+                padding: 0;
             }
 
 
-            /* MOBILE IMAGE
-               
-               KJO MBETET SIÇ E RREGULLUAM
-               PËR TELEFONIN
-            */
+            /* MOBILE IMAGE */
 
             .hero-bg {
 
                 width: 100%;
 
-                height: auto;
+                height: 100%;
 
-                min-height: 0;
+                min-height: 100%;
 
-                object-fit: contain;
+                object-fit: cover;
 
                 object-position: center center;
             }
@@ -740,10 +743,6 @@
 <body>
 
 
-    <!-- =========================================
-         HEADER
-    ========================================== -->
-
     <header>
 
 
@@ -803,25 +802,15 @@
 
 
 
-    <!-- GREEN LINE -->
-
     <div class="green-divider"></div>
 
 
-
-    <!-- =========================================
-         HOME
-    ========================================== -->
 
     <section
         class="hero"
         id="home"
     >
 
-
-        <!--
-            FOTOJA KRYESORE E HYRJES
-        -->
 
         <img
             src="images/(1).png"
@@ -831,15 +820,9 @@
         >
 
 
-        <!-- DARK OVERLAY -->
-
         <div class="hero-overlay"></div>
 
 
-
-        <!-- =====================================
-             TEXT
-        ====================================== -->
 
         <div class="hero-content">
 
@@ -878,10 +861,6 @@
 
 
 
-    <!-- =========================================
-         FOOTER
-    ========================================== -->
-
     <footer class="studio-footer">
 
         <div class="studio-name">
@@ -893,10 +872,6 @@
     </footer>
 
 
-
-    <!-- =========================================
-         JAVASCRIPT
-    ========================================== -->
 
     <script>
 
@@ -942,7 +917,7 @@
         /* ========================================
            SLIDESHOW
            
-           HYRJA NUK PREKET.
+           HYRJA MBETET FIKSISHT SIÇ ËSHTË.
            
            PAS 4.5 SEKONDASH:
            
@@ -956,7 +931,10 @@
               ↓
            ...
            
-           SHKRIMI NUK RIFILLOHET.
+           SHKRIMI NUK PREKET.
+           
+           FUNKSIONON SI NË LAPTOP
+           ASHTU EDHE NË TELEFON.
         ======================================== */
 
         const slideshowImages = [
@@ -972,6 +950,7 @@
 
 
         let slideshowStarted = false;
+
 
 
         setTimeout(
@@ -992,6 +971,13 @@
                     function() {
 
 
+                        /*
+                           Vetëm fotografia
+                           ndryshon animacionin.
+                           
+                           Teksti nuk preket.
+                        */
+
                         heroImage.style.animation =
                             'none';
 
@@ -999,9 +985,17 @@
                         void heroImage.offsetWidth;
 
 
+                        /*
+                           Ndryshojmë foton.
+                        */
+
                         heroImage.src =
                             slideshowImages[currentSlide];
 
+
+                        /*
+                           Animacioni i slideshow-it.
+                        */
 
                         heroImage.style.animation =
                             'slideshowAnimation 2s ease-out forwards';
@@ -1077,7 +1071,6 @@
 </body>
 
 </html>
-
 
 
 
