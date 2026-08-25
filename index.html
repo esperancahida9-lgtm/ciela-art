@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>My Art Studio</title>
-
 
     <style>
 
         @import url('https://db.onlinewebfonts.com/c/07cb29fdcb073fff840edc6de2067b50?family=Amsterdam+Four_ttf');
-
 
         * {
             box-sizing: border-box;
@@ -21,23 +15,13 @@
             padding: 0;
         }
 
-
-        html {
-            width: 100%;
-            min-height: 100%;
-            scroll-behavior: smooth;
-        }
-
-
         body {
-            width: 100%;
-            min-height: 100vh;
             font-family: Georgia, serif;
             background: #000000;
             color: #ffffff;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
-
 
 
         /* =========================
@@ -45,78 +29,41 @@
         ========================= */
 
         header {
-
             height: 65px;
-
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
-
             padding: 0 7%;
-
             border-bottom: 1px solid #ddd6ce;
-
             background: rgba(145, 190, 150, 0.35);
-
             backdrop-filter: blur(5px);
-
             position: fixed;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
-            z-index: 1000;
+            z-index: 100;
         }
 
-
-
-        /* =========================
-           GREEN DIVIDER
-        ========================= */
 
         .green-divider {
-
             height: 15px;
-
             background: #051711;
-
-            position: fixed;
-
+            position: absolute;
             top: 65px;
-
             left: 0;
-
             width: 100%;
-
-            z-index: 999;
+            z-index: 99;
         }
 
 
-
-        /* =========================
-           LOGO
-        ========================= */
-
         .studio-logo {
-
             width: 110px;
-
             height: auto;
-
             display: block;
-
             position: absolute;
-
             top: 10px;
-
             left: 7%;
-
-            z-index: 1001;
+            z-index: 101;
 
             filter:
                 brightness(0)
@@ -130,42 +77,26 @@
         }
 
 
-
-        /* =========================
-           DESKTOP MENU
-        ========================= */
-
         .desktop-menu {
-
             display: flex;
-
             gap: 30px;
-
             margin-left: auto;
         }
 
 
         .desktop-menu a {
-
             color: #79bb99;
-
             text-decoration: none;
-
             font-size: 13px;
-
             letter-spacing: 2px;
-
             font-weight: bold;
-
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
 
 
         .desktop-menu a:hover {
-
             color: #ffffff;
         }
-
 
 
         /* =========================
@@ -173,322 +104,191 @@
         ========================= */
 
         .menu-container {
-
             display: none;
-
             position: relative;
         }
 
 
         .menu-button {
-
             background: none;
-
             border: none;
-
             color: #70ad6b;
-
             font-size: 30px;
-
             cursor: pointer;
-
-            line-height: 1;
         }
 
 
         .dropdown-menu {
-
             display: none;
-
             position: absolute;
-
             right: 0;
-
             top: 50px;
-
             background: #111111;
-
             min-width: 180px;
-
             padding: 15px 0;
-
             border: 1px solid #333333;
-
-            z-index: 2000;
+            z-index: 200;
         }
 
 
         .dropdown-menu.open {
-
             display: block;
         }
 
 
         .dropdown-menu a {
-
             display: block;
-
             color: #79bb99;
-
             text-decoration: none;
-
             padding: 14px 25px;
-
             font-size: 13px;
-
             letter-spacing: 2px;
         }
 
 
         .dropdown-menu a:hover {
-
             background: #091e16;
         }
 
 
-
         /* =========================
-           HOME / HERO
+           HOME
         ========================= */
 
         .hero {
-
             position: relative;
-
             width: 100%;
-
-            height: 100vh;
-
-            min-height: 100vh;
-
-            overflow: hidden;
-
             display: flex;
-
             justify-content: center;
-
-            align-items: center;
-
+            align-items: flex-start;
             text-align: center;
-
-            background: #000000;
+            padding: 95px 0 0 0;
+            overflow: hidden;
+            background: rgba(11, 65, 16, 0.406);
         }
 
 
+        /*
+           FOTOJA QËNDRON ME RAPORTIN E SAJ.
 
-        /* =========================
-           HERO IMAGE
-        ========================= */
+           Nuk përdorim object-fit: cover.
+           Kështu fotografia nuk pritet.
+        */
 
         .hero-bg {
-
-            position: absolute;
-
-            top: 0;
-
-            left: 0;
-
-            width: 100%;
-
-            height: 100%;
-
+            position: relative;
             display: block;
-
-            object-fit: cover;
-
-            object-position: center;
-
+            width: 100%;
+            height: auto;
+            max-width: 100%;
             z-index: 1;
 
             animation:
-                heroEntrance 4.5s ease-out forwards;
+                panAnimation1
+                4.5s
+                ease-out
+                forwards;
         }
 
-
-
-        /* =========================
-           DARK OVERLAY
-        ========================= */
 
         .hero-overlay {
-
             position: absolute;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
             height: 100%;
-
             background: rgba(0, 0, 0, 0.5);
-
             z-index: 2;
-
             pointer-events: none;
         }
 
 
+        /*
+           SHKRIMI QËNDRON MBI FOTOGRAFI.
 
-        /* =========================
-           HERO CONTENT
-        ========================= */
+           Ky nuk ndryshon gjatë slideshow.
+        */
 
         .hero-content {
-
             position: absolute;
-
             top: 50%;
-
             left: 50%;
-
             transform: translate(-50%, -50%);
-
             z-index: 3;
-
-            width: 90%;
-
             max-width: 800px;
-
-            text-align: center;
-
-            pointer-events: none;
+            width: 90%;
         }
 
-
-
-        /* =========================
-           TITLE
-        ========================= */
 
         .hero h1 {
-
             font-size: 70px;
-
             font-weight: normal;
-
             line-height: 1.05;
-
             margin-bottom: 25px;
-
             color: #9dceff;
-
-            text-shadow:
-                2px 2px 10px rgba(0, 0, 0, 0.8);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
 
             opacity: 0;
-
             transform: translateY(20px);
 
             animation:
-                textAppear 1.4s ease-out 2.2s forwards;
+                textAppear
+                1.4s
+                ease-out
+                2.2s
+                forwards;
         }
 
-
-
-        /* =========================
-           DESCRIPTION
-        ========================= */
 
         .hero p {
-
             color: #9dceff;
-
             font-size: 18px;
-
             margin-bottom: 35px;
-
-            text-shadow:
-                1px 1px 6px rgba(0, 0, 0, 0.9);
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
 
             opacity: 0;
-
             transform: translateY(20px);
 
             animation:
-                textAppear 1.2s ease-out 2.8s forwards;
+                textAppear
+                1.2s
+                ease-out
+                2.8s
+                forwards;
         }
 
-
-
-        /* =========================
-           BUTTON
-        ========================= */
 
         .hero .button {
-
             opacity: 0;
-
             transform: translateY(20px);
 
             animation:
-                textAppear 1.2s ease-out 3.3s forwards;
-
-            pointer-events: auto;
+                textAppear
+                1.2s
+                ease-out
+                3.3s
+                forwards;
         }
-
-
-        .button {
-
-            display: inline-block;
-
-            padding: 15px 32px;
-
-            border: 1px solid #ffffff;
-
-            text-decoration: none;
-
-            color: #ffffff;
-
-            letter-spacing: 2px;
-
-            font-size: 12px;
-
-            background: rgba(0, 0, 0, 0.3);
-
-            transition:
-                all 0.3s ease;
-        }
-
-
-        .button:hover {
-
-            background: #ffffff;
-
-            color: #000000;
-        }
-
 
 
         /* =========================
-           INTRO IMAGE ANIMATION
-           
-           KJO ËSHTË VETËM PËR HYRJEN
+           FOTO ANIMATION
         ========================= */
 
-        @keyframes heroEntrance {
+        @keyframes panAnimation1 {
 
             0% {
-
                 transform: scale(1.05);
-
-                transform-origin: center center;
-
+                transform-origin: top center;
                 opacity: 0.4;
             }
 
-
             100% {
-
                 transform: scale(1);
-
-                transform-origin: center center;
-
+                transform-origin: top center;
                 opacity: 1;
             }
         }
-
 
 
         /* =========================
@@ -498,45 +298,38 @@
         @keyframes textAppear {
 
             0% {
-
                 opacity: 0;
-
                 transform: translateY(20px);
             }
 
-
             100% {
-
                 opacity: 1;
-
                 transform: translateY(0);
             }
         }
 
 
-
         /* =========================
-           SLIDESHOW IMAGE ANIMATION
+           BUTTON
         ========================= */
 
-        @keyframes slideshowAnimation {
-
-            0% {
-
-                transform: scale(1.05);
-
-                opacity: 0.4;
-            }
-
-
-            100% {
-
-                transform: scale(1);
-
-                opacity: 1;
-            }
+        .button {
+            display: inline-block;
+            padding: 15px 32px;
+            border: 1px solid #ffffff;
+            text-decoration: none;
+            color: #ffffff;
+            letter-spacing: 2px;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
         }
 
+
+        .button:hover {
+            background: #ffffff;
+            color: #000000;
+        }
 
 
         /* =========================
@@ -544,212 +337,119 @@
         ========================= */
 
         .studio-footer {
-
             width: 100%;
-
             height: 180px;
-
             background: #051711;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
         }
 
 
         .studio-name {
-
-            font-family:
-                "Amsterdam Four_ttf",
-                cursive;
-
+            font-family: "Amsterdam Four_ttf", cursive;
             font-size: 55px;
-
             color: #ffffff;
-
             letter-spacing: 2px;
         }
 
 
-
-        /* ==================================================
-           MOBILE
-        ================================================== */
+        /* =========================
+           TELEFON
+        ========================= */
 
         @media (max-width: 850px) {
 
-
-            /* HEADER */
-
             header {
-
                 height: 55px;
-
                 justify-content: center;
-
-                padding: 0 7%;
             }
 
 
-            /* GREEN DIVIDER */
-
             .green-divider {
-
-                height: 15px;
-
                 top: 55px;
             }
 
 
-            /* DESKTOP MENU */
-
             .desktop-menu {
-
                 display: none;
             }
 
 
-            /* MOBILE MENU */
-
             .menu-container {
-
                 display: block;
-
                 position: absolute;
-
                 right: 20px;
             }
 
 
-            /* MOBILE HERO */
+            /*
+               E RËNDËSISHME:
+
+               Edhe telefoni nuk përdor
+               object-fit: cover.
+
+               Fotografia mbetet e plotë.
+            */
 
             .hero {
-
-                width: 100vw;
-
-                height: 100vh;
-
-                min-height: 100vh;
-
+                width: 100%;
+                height: auto;
+                min-height: 0;
+                padding-top: 95px;
                 overflow: hidden;
             }
 
 
-            /* MOBILE IMAGE */
-
             .hero-bg {
-
                 width: 100%;
-
-                height: 100%;
-
-                min-height: 100%;
-
-                object-fit: cover;
-
-                object-position: center center;
+                height: auto;
+                max-width: 100%;
+                object-fit: initial;
+                object-position: initial;
             }
 
-
-            /* MOBILE TITLE */
 
             .hero h1 {
-
                 font-size: 44px;
-
-                line-height: 1.05;
             }
 
-
-            /* MOBILE PARAGRAPH */
 
             .hero p {
-
                 font-size: 16px;
-
-                margin-bottom: 30px;
             }
 
-
-            /* MOBILE LOGO */
 
             .studio-logo {
-
                 width: 110px;
-
                 top: 10px;
-
                 left: 7%;
-
-                z-index: 1001;
+                z-index: 101;
             }
 
 
-            /* MOBILE FOOTER */
-
             .studio-footer {
-
                 height: 100px;
             }
 
 
             .studio-name {
-
                 font-size: 34px;
             }
-
-        }
-
-
-
-        /* ==================================================
-           VERY SMALL PHONES
-        ================================================== */
-
-        @media (max-width: 400px) {
-
-            .hero h1 {
-
-                font-size: 38px;
-            }
-
-
-            .hero p {
-
-                font-size: 14px;
-            }
-
-
-            .hero .button {
-
-                padding: 13px 25px;
-            }
-
-
-            .studio-logo {
-
-                width: 100px;
-            }
-
         }
 
     </style>
-
 </head>
-
 
 
 <body>
 
 
-    <!-- =========================================
+    <!-- =========================
          HEADER
-    ========================================== -->
+    ========================= -->
 
     <header>
-
 
         <img
             src="images/logo.png"
@@ -760,25 +460,30 @@
 
         <nav class="desktop-menu">
 
-            <a href="#home">HOME</a>
+            <a href="#home">
+                HOME
+            </a>
 
-            <a href="about.html">ABOUT</a>
+            <a href="about.html">
+                ABOUT
+            </a>
 
-            <a href="paintings.html">PAINTINGS</a>
+            <a href="paintings.html">
+                PAINTINGS
+            </a>
 
-            <a href="#contact">CONTACT</a>
+            <a href="#contact">
+                CONTACT
+            </a>
 
         </nav>
 
 
-
         <div class="menu-container">
-
 
             <button
                 class="menu-button"
                 id="menuButton"
-                aria-label="Open menu"
             >
                 ☰
             </button>
@@ -789,79 +494,74 @@
                 id="dropdownMenu"
             >
 
-                <a href="#home">HOME</a>
+                <a href="#home">
+                    HOME
+                </a>
 
-                <a href="about.html">ABOUT</a>
+                <a href="about.html">
+                    ABOUT
+                </a>
 
-                <a href="paintings.html">PAINTINGS</a>
+                <a href="paintings.html">
+                    PAINTINGS
+                </a>
 
-                <a href="#contact">CONTACT</a>
+                <a href="#contact">
+                    CONTACT
+                </a>
 
             </nav>
 
-
         </div>
-
 
     </header>
 
 
-
-    <!-- GREEN LINE -->
-
     <div class="green-divider"></div>
 
 
-
-    <!-- =========================================
+    <!-- =========================
          HOME
-    ========================================== -->
+    ========================= -->
 
     <section
         class="hero"
         id="home"
     >
 
-
         <!--
-            FOTOJA KRYESORE E HYRJES
+             FOTOJA KRYESORE
+             HYRJA FILLESTARE
         -->
 
         <img
             src="images/(1).png"
             class="hero-bg"
-            id="heroImage"
             alt="Artwork"
         >
 
 
-        <!-- DARK OVERLAY -->
-
         <div class="hero-overlay"></div>
 
 
+        <!--
+             SHKRIMI
 
-        <!-- =====================================
-             TEXT
-        ====================================== -->
+             Ky shfaqet vetëm një herë.
+             Nuk preket nga slideshow.
+        -->
 
         <div class="hero-content">
 
-
             <h1>
-
                 Art That Speaks<br>
-
                 Without Words
-
             </h1>
 
 
             <p>
-
                 Original paintings created with passion,
                 emotion and imagination.
-
             </p>
 
 
@@ -869,53 +569,43 @@
                 href="paintings.html"
                 class="button"
             >
-
                 EXPLORE PAINTINGS
-
             </a>
 
-
         </div>
-
 
     </section>
 
 
-
-    <!-- =========================================
+    <!-- =========================
          FOOTER
-    ========================================== -->
+    ========================= -->
 
     <footer class="studio-footer">
 
         <div class="studio-name">
-
             Ciela Art
-
         </div>
 
     </footer>
 
 
-
-    <!-- =========================================
+    <!-- =========================
          JAVASCRIPT
-    ========================================== -->
+    ========================= -->
 
     <script>
-
-
-        /* ========================================
-           MOBILE MENU
-        ======================================== */
 
         const menuButton =
             document.getElementById('menuButton');
 
-
         const dropdownMenu =
             document.getElementById('dropdownMenu');
 
+
+        /* =========================
+           MOBILE MENU
+        ========================= */
 
         menuButton.addEventListener(
             'click',
@@ -927,14 +617,9 @@
         );
 
 
-
-        /* ========================================
-           HOME ELEMENTS
-        ======================================== */
-
-        const heroImage =
-            document.getElementById('heroImage');
-
+        /* =========================
+           HOME LINKS
+        ========================= */
 
         const homeLinks =
             document.querySelectorAll(
@@ -942,197 +627,242 @@
             );
 
 
+        const heroBg =
+            document.querySelector('.hero-bg');
 
-        /* ========================================
+
+        /* =========================
            SLIDESHOW
-           
-           HYRJA NUK PREKET.
-           
-           PAS 4.5 SEKONDASH:
-           
-           (1).png
-              ↓
+        =========================
+
+           Punon në:
+
+           LAPTOP
+           TELEFON
+
+           Hyrja fillestare nuk preket.
+
+           4.5 sekonda:
+           hyrja fillestare
+
+           Pastaj:
+
            kornix.jpeg
-              ↓
+           ↓
            (1).png
-              ↓
+           ↓
            kornix.jpeg
-              ↓
-           ...
-           
-           SHKRIMI NUK RIFILLOHET.
-        ======================================== */
+           ↓
+           pa fund
 
-        const slideshowImages = [
-
-            'images/kornix.jpeg',
-
-            'images/(1).png'
-
-        ];
-
-
-        let currentSlide = 0;
-
-
-        let slideshowStarted = false;
-
-
-        /*
-
-           Hyrja fillestare zgjat 4.5 sekonda.
-
-           Pastaj fillon slideshow.
-
+           Shkrimi nuk ndryshon.
         */
 
-        setTimeout(
-            function() {
+
+        if (heroBg) {
+
+            const slideshowImages = [
+
+                'images/kornix.jpeg',
+
+                'images/(1).png'
+
+            ];
 
 
-                if (slideshowStarted) {
-
-                    return;
-
-                }
+            let currentSlide = 0;
 
 
-                slideshowStarted = true;
+            /*
+               PRESIM PAK MË SHUMË SE
+               ANIMACIONI FILLESTAR.
+
+               Kjo siguron që hyrja të
+               mbarojë komplet para
+               slideshow-it.
+            */
+
+            setTimeout(function() {
 
 
-                setInterval(
-                    function() {
+                /*
+                   Çdo 5.5 sekonda
+                   ndërrohet fotografia.
+                */
+
+                setInterval(function() {
 
 
-                        /*
+                    /*
+                       Ndalojmë animacionin
+                       e fotografisë aktuale.
+                    */
 
-                           Heqim përkohësisht
-                           animacionin.
+                    heroBg.style.animation = 'none';
 
-                        */
 
-                        heroImage.style.animation =
+                    /*
+                       Rifreskojmë animacionin
+                       pa prekur shkrimin.
+                    */
+
+                    void heroBg.offsetWidth;
+
+
+                    /*
+                       Ndryshojmë vetëm fotografinë.
+                    */
+
+                    heroBg.src =
+                        slideshowImages[currentSlide];
+
+
+                    /*
+                       E njëjta animacion si hyrja.
+                    */
+
+                    heroBg.style.animation =
+                        'panAnimation1 4.5s ease-out forwards';
+
+
+                    /*
+                       Kalojmë te fotografia tjetër.
+                    */
+
+                    currentSlide++;
+
+
+                    /*
+                       Kur arrijmë në fund,
+                       kthehemi te fotografia e parë.
+                    */
+
+                    if (
+                        currentSlide >=
+                        slideshowImages.length
+                    ) {
+
+                        currentSlide = 0;
+
+                    }
+
+
+                }, 5500);
+
+
+            }, 4700);
+
+        }
+
+
+        /* =========================
+           HOME CLICK
+        ========================= */
+
+        homeLinks.forEach(function(link) {
+
+
+            link.addEventListener(
+                'click',
+                function() {
+
+
+                    dropdownMenu.classList.remove(
+                        'open'
+                    );
+
+
+                    /*
+                       Kur shtypet HOME,
+                       fotografia fillon përsëri
+                       animacionin e saj.
+                    */
+
+                    if (heroBg) {
+
+                        heroBg.style.animation =
                             'none';
 
 
-                        /*
-
-                           Rifreskojmë elementin
-                           që animacioni të
-                           mund të fillojë
-                           përsëri.
-
-                        */
-
-                        void heroImage.offsetWidth;
+                        void heroBg.offsetWidth;
 
 
-                        /*
+                        heroBg.style.animation =
+                            'panAnimation1 4.5s ease-out forwards';
 
-                           Ndryshojmë foton.
-
-                        */
-
-                        heroImage.src =
-                            slideshowImages[currentSlide];
+                    }
 
 
-                        /*
+                    /*
+                       SHKRIMI RIFILLON VETËM
+                       KUR KLIKOJMË HOME.
 
-                           Vetëm slideshow-i
-                           merr këtë animacion.
+                       Gjatë slideshow-it nuk
+                       preket fare.
+                    */
 
-                           SHKRIMI NUK PREKET.
-
-                        */
-
-                        heroImage.style.animation =
-                            'slideshowAnimation 2s ease-out forwards';
-
-
-                        /*
-
-                           Kalojmë te fotoja tjetër.
-
-                        */
-
-                        currentSlide++;
-
-
-                        if (
-                            currentSlide >=
-                            slideshowImages.length
-                        ) {
-
-                            currentSlide = 0;
-
-                        }
-
-
-                    },
-
-                    6000
-
-                );
-
-
-            },
-
-            4500
-
-        );
-
-
-
-        /* ========================================
-           HOME BUTTON / HOME MENU
-        ======================================== */
-
-        homeLinks.forEach(
-            function(link) {
-
-
-                link.addEventListener(
-                    'click',
-                    function() {
-
-
-                        dropdownMenu.classList.remove(
-                            'open'
+                    const heading =
+                        document.querySelector(
+                            '.hero h1'
                         );
 
 
-                        /*
+                    const paragraph =
+                        document.querySelector(
+                            '.hero p'
+                        );
 
-                           Kur kthehemi te HOME,
 
-                           rivendosim vetëm
-                           animacionin e hyrjes.
+                    const button =
+                        document.querySelector(
+                            '.hero .button'
+                        );
 
-                        */
 
-                        heroImage.style.animation =
+                    if (
+                        heading &&
+                        paragraph &&
+                        button
+                    ) {
+
+
+                        heading.style.animation =
                             'none';
 
 
-                        void heroImage.offsetWidth;
+                        paragraph.style.animation =
+                            'none';
 
 
-                        heroImage.style.animation =
-                            'heroEntrance 4.5s ease-out forwards';
+                        button.style.animation =
+                            'none';
 
 
+                        void heading.offsetWidth;
+                        void paragraph.offsetWidth;
+                        void button.offsetWidth;
+
+
+                        heading.style.animation =
+                            'textAppear 1.4s ease-out 2.2s forwards';
+
+
+                        paragraph.style.animation =
+                            'textAppear 1.2s ease-out 2.8s forwards';
+
+
+                        button.style.animation =
+                            'textAppear 1.2s ease-out 3.3s forwards';
 
                     }
-                );
 
-            }
-        );
+                }
+            );
 
+        });
 
     </script>
 
 
 </body>
-
 </html>
