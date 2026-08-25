@@ -191,6 +191,20 @@
             animation: textAppear 1.2s ease-out 3.3s forwards; 
         } 
  
+        @keyframes panAnimation1 { 
+            0% { 
+                transform: scale(1.05); 
+                transform-origin: top center; 
+                opacity: 0.4; 
+            } 
+ 
+            100% { 
+                transform: scale(1); 
+                transform-origin: top center; 
+                opacity: 1; 
+            } 
+        } 
+ 
         @keyframes textAppear { 
             0% { 
                 opacity: 0; 
@@ -240,9 +254,7 @@
  
             header { 
                 height: 55px;
-                justify-content: center;
-                background: rgba(145, 190, 150, 0.35);
-                backdrop-filter: blur(5px);
+                justify-content: center; 
             } 
 
             .green-divider {
@@ -259,75 +271,40 @@
                 right: 20px; 
             } 
 
-            /* =========================================
-               TELEFON:
-               FOTOGRAFIA ESHTE VETE FAQJA HOME
-               ========================================= */
-
+            /* NDRYSHIM VETEM PER TELEFON */
             .hero { 
-                position: relative;
                 width: 100vw;
-                height: calc(100svh + 50px);
-                min-height: calc(100svh + 50px);
-                padding: 0;
-                margin: 0;
+                height: 100vh;
+                min-height: 100vh;
+                padding-top: 0;
                 overflow: hidden;
-                display: block;
-                background: transparent;
             } 
 
             .hero-bg { 
-                position: absolute;
-                top: 0;
-                left: 0;
                 width: 100%;
                 height: 100%;
-                min-height: 100%;
+                min-height: 0;
                 object-fit: cover;
                 object-position: center;
-                display: block;
-                z-index: 1;
-            }
-
-            .hero-overlay { 
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 2;
-            }
-
-            .hero-content {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                max-width: 800px;
-                z-index: 3;
-            }
-
-            /* Ciela Art tani eshte mbi fotografi,
-               jo ne nje faqe te zeze me vete */
+            } 
+            
+            .hero h1 { 
+                font-size: 44px; 
+            } 
+ 
+            .studio-logo { 
+                width: 110px; 
+                top: 10px; 
+                left: 7%; 
+                z-index: 101; 
+            } 
 
             .studio-footer { 
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                height: 50px;
-                background: transparent;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 5;
+                height: 100px; 
             } 
 
             .studio-name { 
-                font-size: 34px;
-                color: #ffffff;
-                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+                font-size: 34px; 
             } 
         } 
  
@@ -390,11 +367,11 @@
  
     </div> 
  
-    <footer class="studio-footer"> 
-        <div class="studio-name">Ciela Art</div> 
-    </footer> 
- 
 </section> 
+ 
+<footer class="studio-footer"> 
+    <div class="studio-name">Ciela Art</div> 
+</footer> 
  
 <script> 
  
