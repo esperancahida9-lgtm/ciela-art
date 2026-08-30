@@ -318,23 +318,56 @@
 
         /* =========================
            HERO CONTENT
+           LAPTOP
         ========================= */
 
         .hero-content {
 
             position: absolute;
 
-            top: 50%;
+            top: 0;
 
-            left: 50%;
+            left: 0;
 
-            transform: translate(-50%, -50%);
+            width: 100%;
+
+            height: 100%;
+
+            max-width: none;
+
+            transform: none;
 
             z-index: 3;
 
-            width: 90%;
+            text-align: center;
 
-            max-width: 800px;
+            pointer-events: none;
+        }
+
+
+
+        /* =========================
+           TEXT BOX
+           LAPTOP
+        ========================= */
+
+        .hero-text-box {
+
+            position: absolute;
+
+            top: 38%;
+
+            right: 8%;
+
+            width: 310px;
+
+            max-width: 35%;
+
+            padding: 28px 25px;
+
+            border: 1px solid rgba(255, 255, 255, 0.7);
+
+            background: rgba(0, 0, 0, 0.28);
 
             text-align: center;
 
@@ -382,7 +415,7 @@
 
             font-size: 18px;
 
-            margin-bottom: 35px;
+            margin-bottom: 0;
 
             text-shadow:
                 1px 1px 6px rgba(0, 0, 0, 0.9);
@@ -399,18 +432,27 @@
 
         /* =========================
            BUTTON
+           FUND I FOTOGRAFISË
         ========================= */
 
         .hero .button {
 
-            opacity: 0;
+            position: absolute;
 
-            transform: translateY(20px);
+            left: 50%;
+
+            bottom: 40px;
+
+            transform: translateX(-50%) translateY(20px);
+
+            opacity: 0;
 
             animation:
                 textAppear 1.2s ease-out 3.3s forwards;
 
             pointer-events: auto;
+
+            white-space: nowrap;
         }
 
 
@@ -673,6 +715,67 @@
 }
 
 
+/* MOBILE HERO CONTENT */
+
+.hero-content {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    max-width: none;
+
+    transform: none;
+
+}
+
+
+/* MOBILE TEXT BOX */
+
+.hero-text-box {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    right: auto;
+
+    transform: translate(-50%, -50%);
+
+    width: 90%;
+
+    max-width: 800px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+}
+
+
+/* MOBILE BUTTON */
+
+.hero .button {
+
+    position: static;
+
+    transform: translateY(20px);
+
+    margin-top: 0;
+
+}
+
+
 /* MOBILE FOOTER - HIQET */
 
 .studio-footer {
@@ -800,22 +903,26 @@
 
         <div class="hero-content">
 
-
-            <h1>
-
-                Art That Speaks<br>
-
-                Without Words
-
-            </h1>
+            <div class="hero-text-box">
 
 
-            <p>
+                <h1>
 
-                Original paintings created with passion,
-                emotion and imagination.
+                    Art That Speaks<br>
 
-            </p>
+                    Without Words
+
+                </h1>
+
+
+                <p>
+
+                    Original paintings created with passion,
+                    emotion and imagination.
+
+                </p>
+
+            </div>
 
 
             <a
@@ -1040,4 +1147,5 @@
 
 </html>
 ```
+
 
